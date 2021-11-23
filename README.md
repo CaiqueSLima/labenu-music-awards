@@ -56,10 +56,10 @@ npm run migrations
   * Method: POST
   * Path: `/user/signup`
   * Body:
-    * name (obrigatório)
-    * email (obrigatório)
-    * password (obrigatório)
-    * role (obrigatório)
+    * name (mandatory)
+    * email (mandatory)
+    * password (mandatory)
+    * role (mandatory)
   * Response:
     * token
 
@@ -67,8 +67,8 @@ npm run migrations
   * Method: POST
   * Path: `/user/login`
   * Body:
-    * email (obrigatório)
-    * password (obrigatório)
+    * email (mandatory)
+    * password (mandatory)
   * Response:
     * token
 
@@ -76,11 +76,11 @@ npm run migrations
   * Method: POST
   * Path: `/band/create`
   * headers:
-    * authorization: token
+    * authorization: token (must be an admin to add a band)
   * Body:
-    * name (obrigatório)
-    * musicGenre (obrigatório)
-    * responsible (obrigatório)
+    * name (mandatory)
+    * musicGenre (mandatory)
+    * responsible (mandatory)
 
 
 * ## Get band by id or name
