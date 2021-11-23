@@ -1,12 +1,13 @@
 import { BaseDatabase } from "./BaseDatabase"
 import { User } from "../model/User"
+import { BandDatabase } from "./BandDatabase"
 
 export class UserDatabase extends BaseDatabase {
 
   private static TABLE_NAME = "lama_users"
 
   public async createUser(id: string, email: string, name: string, password: string, role: string): Promise<void> {
-      await this.getConnection()
+      await BandDatabase.connection(UserDatabase.TABLE_NAME)
         .insert({
           id,
           email,
@@ -14,13 +15,11 @@ export class UserDatabase extends BaseDatabase {
           password,
           role
         })
-      .into(UserDatabase.TABLE_NAME)
   }
 
   public async getUserByEmail(email: string): Promise<User[]> {
-    const result = await this.getConnection()
+    const result = await BandDatabase.connection(UserDatabase.TABLE_NAME)
       .select()
-      .from(UserDatabase.TABLE_NAME)
       .where({ email })
 
     return result
