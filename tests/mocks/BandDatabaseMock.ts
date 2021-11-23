@@ -5,6 +5,10 @@ export class BandDatabaseMock {
     public async createBand(id: string, name: string, musicGenre: string, responsible: string): Promise<void> { }
 
     public async getBandByNameOrID(input: string): Promise<BandData[]> {
-        return [bandFromDBMock]
+        if (input === 'band1' || input === 'id_mock') {
+            return [bandFromDBMock]
+        } else {
+            return []
+        }
     }
 }

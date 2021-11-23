@@ -48,7 +48,7 @@ export class BandBusiness {
         }
 
         if (result.length === 0) {
-            throw new CustomError('Nenhuma banda encontrada', 404)
+            throw new CustomError('No band found', 404)
         }
 
         const band = Band.toBandModel(result[0])
