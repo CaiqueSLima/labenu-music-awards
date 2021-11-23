@@ -50,5 +50,31 @@ describe('Testing BandBusiness create band', () => {
 
 describe('Testing BandBusiness get band details', () => {
 
-    test('')
+    test('Testing with a valid name, empty id', async () => {
+        try {
+            const result = await bandBusiness.getBandByIdOrName('band1', '')
+            expect(result).toEqual(bandClassMock)
+        } catch (error: any) {
+            console.log(error)
+        }
+    })
+
+    test('Testing with a empty name, valid id', async () => {
+        try {
+            const result = await bandBusiness.getBandByIdOrName('', 'id_mock')
+            expect(result).toEqual(bandClassMock)
+        } catch (error: any) {
+            console.log(error)
+        }
+    })
+
+    test('Testing band not found', async () => {
+        expect.assertions(2)
+        try {
+            await bandBusiness.getBandByIdOrName('', '123')
+        } catch (error: any) {
+            expect(error.message).toEqual('No band found')
+            expect(error.statusCode).toBe(404)
+        }
+    })
 })

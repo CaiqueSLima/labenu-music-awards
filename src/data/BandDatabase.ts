@@ -6,20 +6,18 @@ export class BandDatabase extends BaseDatabase {
   private static TABLE_NAME = "lama_bands"
 
   public async createBand(id: string, name: string, musicGenre: string, responsible: string): Promise<void> {
-      await this.getConnection()
+      await BaseDatabase.connection(BandDatabase.TABLE_NAME)
         .insert({
           id,
           name,
           music_genre: musicGenre,
           responsible
         })
-      .into(BandDatabase.TABLE_NAME)
   }
 
   public async getBandByNameOrID(input: string): Promise<BandData[]> {
-    const result = await this.getConnection()
+    const result = await BandDatabase.connection(BandDatabase.TABLE_NAME)
       .select('*')
-      .from(BandDatabase.TABLE_NAME)
       .where('name', 'like', `%${input}%`)
       .orWhere({ id: input })
 

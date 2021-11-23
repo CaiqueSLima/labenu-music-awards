@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import { UserInputDTO, LoginInputDTO} from "../model/User"
 import { UserBusiness } from "../business/UserBusiness"
-import { BaseDatabase } from "../data/BaseDatabase"
 import { UserDatabase } from "../data/UserDatabase"
 import { IdGenerator } from "../services/IdGenerator"
 import { HashManager } from "../services/HashManager"
@@ -25,15 +24,13 @@ export class UserController {
                 role: req.body.role
             }
 
-            const token = await userBusiness.signUp(input);
+            const token = await userBusiness.signUp(input)
 
-            res.status(200).send({ token });
+            res.status(200).send({ token })
 
         } catch (error: any) {
             res.status(error.statusCode).send({ message: error.sqlMessage || error.message })
         }
-
-        await BaseDatabase.destroyConnection();
     }
 
     public async login(req: Request, res: Response) {
@@ -43,17 +40,14 @@ export class UserController {
             const loginData: LoginInputDTO = {
                 email: req.body.email,
                 password: req.body.password
-            };
+            }
 
-            const token = await userBusiness.login(loginData);
+            const token = await userBusiness.login(loginData)
 
-            res.status(200).send({ token });
+            res.status(200).send({ token })
 
         } catch (error: any) {
             res.status(error.statusCode).send({ message: error.sqlMessage || error.message })
         }
-
-        await BaseDatabase.destroyConnection();
     }
-
 }

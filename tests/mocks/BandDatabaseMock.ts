@@ -1,10 +1,14 @@
 import { BandData } from "../../src/model/Band";
-import { bandMock } from "./bandMock";
+import { bandFromDBMock } from "./bandMock";
 
 export class BandDatabaseMock {
     public async createBand(id: string, name: string, musicGenre: string, responsible: string): Promise<void> { }
 
     public async getBandByNameOrID(input: string): Promise<BandData[]> {
-        return [bandMock]
+        if (input === 'band1' || input === 'id_mock') {
+            return [bandFromDBMock]
+        } else {
+            return []
+        }
     }
 }
