@@ -3,7 +3,7 @@ import { BaseDatabase } from './BaseDatabase'
 class Migrations extends BaseDatabase {
     public async main() {
         try {
-            await this.getConnection().raw(`
+            await BaseDatabase.connection.raw(`
             CREATE TABLE IF NOT EXISTS lama_bands (
                 id VARCHAR(255) PRIMARY KEY,
                 name VARCHAR(255) UNIQUE NOT NULL,
@@ -33,7 +33,7 @@ class Migrations extends BaseDatabase {
         } catch (error: any) {
             console.log(error)
         } finally {
-            BaseDatabase.destroyConnection()
+            BaseDatabase.connection.destroy()
         }
     }
 }

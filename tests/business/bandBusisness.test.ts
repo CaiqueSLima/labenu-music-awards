@@ -50,5 +50,5 @@ describe('Testing BandBusiness create band', () => {
 
 describe('Testing BandBusiness get band details', () => {
 
-    test('')
+    test('Testing ')
 })
